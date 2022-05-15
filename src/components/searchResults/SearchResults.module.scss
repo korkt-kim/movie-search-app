@@ -1,0 +1,23 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/mixins/position';
+
+.searchResultsWrapper {
+  position: relative;
+  top: 15px;
+
+  h1 {
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: colors.$GRAYA;
+    text-align: center;
+  }
+
+  ul {
+    height: 550px;
+    overflow-y: scroll;
+
+    .endMsg {
+      display: none;
+    }
+  }
+}

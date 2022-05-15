@@ -1,0 +1,104 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/mixins/position';
+
+.searchResultWrapper {
+  position: relative;
+  height: 200px;
+  margin-bottom: 10px;
+
+  .searchResult {
+    display: flex;
+    width: 100%;
+    padding: 5px;
+    overflow: hidden;
+    background-color: rgba($color: #ffffff, $alpha: 10%);
+
+    img {
+      width: 130px;
+      height: 180px;
+      margin-right: 20px;
+      color: colors.$GRAY6;
+      background-color: colors.$GRAYE;
+    }
+
+    dl {
+      width: 50%;
+
+      dt {
+        display: '-webkit-box';
+        max-height: 125px;
+        padding: 5px;
+        margin-top: 5px;
+        overflow: hidden;
+        font-size: 20px;
+        font-weight: 700;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 6;
+        -webkit-box-orient: vertical;
+        letter-spacing: 0.1em;
+      }
+
+      dd {
+        color: colors.$GRAYA;
+      }
+
+      .favoriteState {
+        position: absolute;
+        right: 10px;
+        bottom: 20px;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        fill: colors.$GRAY6;
+      }
+    }
+
+    .checkFavorite {
+      fill: colors.$PINK !important;
+      transition: all ease 0.2s;
+
+      & :hover {
+        fill: colors.$GRAY6;
+      }
+    }
+  }
+
+  .favoriteMenu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    justify-content: center;
+    width: 100%;
+    height: 190px;
+    font-size: 18px;
+    background-color: rgba($color: #ffffff, $alpha: 80%);
+
+    .addFavoriteToggle {
+      margin-right: 20px;
+
+      .favoriteSVG {
+        display: block;
+        width: 30px;
+        height: 30px;
+        margin-left: 5px;
+        transition: all ease 0.2s;
+      }
+    }
+
+    .closeSVG {
+      display: block;
+      width: 28px;
+      height: 28px;
+      transition: all ease 0.2s;
+    }
+
+    & :hover {
+      fill: colors.$PINK;
+    }
+  }
+}
+
+.openMenu {
+  display: flex !important;
+}

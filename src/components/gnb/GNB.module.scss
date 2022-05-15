@@ -1,0 +1,26 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/constants/sizes';
+
+.gnb {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  padding: 24px 16px;
+
+  ul {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+
+    a {
+      color: colors.$GRAY6;
+
+      &.isActive {
+        font-weight: 700;
+        color: colors.$WHITE;
+      }
+    }
+  }
+}

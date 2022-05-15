@@ -1,0 +1,13 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/mixins/position';
+
+.appWrapper {
+  @include position.posCenter;
+  width: 360px;
+  height: 720px;
+  padding: 40px 30px;
+  overflow: hidden;
+  color: colors.$WHITE;
+  background: linear-gradient(165deg, #1b386a 30%, #2d2036 75%);
+  border-radius: 36px;
+}
