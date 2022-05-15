@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
-import { favoriteMovieState, selectedMovieState } from 'states/atomStates'
+import cx from 'classnames'
+
+import { favoriteMovieState, selectedMovieState } from '../../states/atomStatus'
 import { IMovie } from 'types/movie'
 
-import cx from 'classnames'
 import { HeartIcon, CancelIcon } from 'assets/svgs'
 import styles from './SearchResult.module.scss'
 
@@ -17,6 +18,7 @@ const SearchResult = ({ movie }: MovieItemProps) => {
 
   const [favoriteMovies, setFavoriteMovies] = useRecoilState(favoriteMovieState)
   const selectedMovie = useRecoilValue(selectedMovieState)
+  
   const [isClicked, setIsClicked] = useState(false)
 
   const isFavorite = favoriteMovies.includes(selectedMovie)

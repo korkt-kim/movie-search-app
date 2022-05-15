@@ -2,14 +2,14 @@ import { useEffect, useCallback, useMemo, useRef } from 'react'
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
 import { usePrevious } from 'react-use'
 
-import { keywordState, pageState, searchResultState, totalCountState } from 'states/atomStates'
+import { searchKeywordState, pageState, searchResultState, totalCountState } from '../../states/atomStatus'
 import { getMovieSearchApi } from 'services/movie'
 
 import SearchResultMovie from '../searchResultMovie'
 import styles from './SearchResults.module.scss'
 
 const SearchResults = () => {
-  const keyword = useRecoilValue(keywordState)
+  const searchKeyword = useRecoilValue(searchKeywordState)
   const [page, setPage] = useRecoilState(pageState)
   const [totalCount, setTotalCount] = useRecoilState(totalCountState)
   const [, setMovies] = useRecoilState(searchResultState)
@@ -17,7 +17,7 @@ const SearchResults = () => {
 
   const firstRender = useFirstRender()
   const lastPage = useMemo(() => Math.ceil(totalCount / 10), [totalCount])
-  const prevKeyword = usePrevious(keyword)
+  const prevsearchKeyword = usePrevious(searchKeyword)
   const prevPage = usePrevious(page)
   const msgRef = useRef<HTMLParagraphElement>(null)
 
@@ -33,11 +33,11 @@ const SearchResults = () => {
 
   useEffect(() => {
     if (firstRender) return
-    if (keyword === prevKeyword && page === prevPage) return
+    if (searchKeyword === prevsearchKeyword && page === prevPage) return
 
     const getSearchResult = async () => {
       const response = await getMovieSearchApi({
-        s: keyword,
+        s: searchKeyword,
         page,
       })
 
@@ -53,7 +53,7 @@ const SearchResults = () => {
     }
 
     getSearchResult()
-  }, [keyword, page, setMovies, resetMovies, setTotalCount, firstRender, prevKeyword, prevPage])
+  }, [searchKeyword, page, setMovies, resetMovies, setTotalCount, firstRender, prevsearchKeyword, prevPage])
 
   const handleScrollEvent = useCallback(
     (e: React.UIEvent<HTMLUListElement>) => {

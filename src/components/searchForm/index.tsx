@@ -1,13 +1,14 @@
 import { ChangeEvent, FormEvent } from 'react'
 import { useRecoilState, useResetRecoilState } from 'recoil'
-import { inputValueState, keywordState, pageState, searchResultState } from 'states/atomStates'
+
+import { inputValueState, searchKeywordState, pageState, searchResultState } from '../../states/atomStatus'
 
 import { SearchIcon } from 'assets/svgs'
 import styles from './SearchForm.module.scss'
 
 const SearchForm = () => {
   const [inputValue, setInputValue] = useRecoilState(inputValueState)
-  const [keyword, setKeyword] = useRecoilState(keywordState)
+  const [searchKeyword, setSearchKeyword] = useRecoilState(searchKeywordState)
   const resetPage = useResetRecoilState(pageState)
   const resetMovies = useResetRecoilState(searchResultState)
 
@@ -17,11 +18,10 @@ const SearchForm = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (!inputValue.trim() || inputValue === keyword) return
-
+    if (!inputValue.trim() || inputValue === searchKeyword) return
     resetMovies()
     resetPage()
-    setKeyword(inputValue)
+    setSearchKeyword(inputValue)
   }
 
   return (

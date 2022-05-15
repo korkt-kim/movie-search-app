@@ -1,6 +1,8 @@
 import { useRecoilState } from 'recoil'
-import { favoriteMovieState } from 'states/atomStates'
+
+import { favoriteMovieState } from '../../states/atomStatus'
 import SearchResult from '../searchResult'
+
 import styles from './SearchResults.module.scss'
 
 const SearchResultFavorites = () => {

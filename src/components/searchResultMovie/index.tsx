@@ -1,5 +1,5 @@
 import { useRecoilState } from 'recoil'
-import { searchResultState } from 'states/atomStates'
+import { searchResultState } from '../../states/atomStatus'
 import SearchResult from '../searchResult'
 
 const SearchResultMovie = () => {
